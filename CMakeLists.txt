@@ -9,7 +9,7 @@ set (CMAKE_CXX_STANDARD 11)
 ## is used, also find other catkin packages
 find_package(octomap REQUIRED)
 find_package(fcl REQUIRED)
-find_package(OMPL REQUIRED)
+find_package(ompl REQUIRED)
 
 find_package(catkin REQUIRED COMPONENTS
   octomap_msgs
@@ -148,12 +148,14 @@ link_libraries(${OCTOMAP_LIBRARIES} ${fcl_LIBRARY_DIRS} ${OMPL_LIBRARY_DIRS})
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
+
 add_executable(${PROJECT_NAME}_node src/path_planning.cpp)
-add_executable(old_path_planning src/old_path_planning.cpp)
-add_executable(traj_gen src/trajectory_generator.cpp)
-add_executable(scale src/scaling.cpp)
-add_executable(goal_transform src/goalpoint_transformer.cpp)
-add_executable(transform_pointcloud src/transform.cpp)
+# add_executable(old_path_planning src/old_path_planning.cpp)
+# add_executable(traj_gen src/trajectory_generator.cpp)
+# add_executable(scale src/scaling.cpp)
+# add_executable(goal_transform src/goalpoint_transformer.cpp)
+# add_executable(transform_pointcloud src/transform.cpp)
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -174,30 +176,31 @@ target_link_libraries(${PROJECT_NAME}_node
    fcl
 )
 
-target_link_libraries(old_path_planning
-   ${catkin_LIBRARIES}
-   ${PCL_LIBRARIES}
-   ${OCTOMAP_LIBRARIES}
-   ${fcl_LIBRARIES}
-   ${OMPL_LIBRARIES}
-   fcl
-)
+# target_link_libraries(old_path_planning
+#    ${catkin_LIBRARIES}
+#    ${PCL_LIBRARIES}
+#    ${OCTOMAP_LIBRARIES}
+#    ${fcl_LIBRARIES}
+#    ${OMPL_LIBRARIES}
+#    fcl
+# )
+#
+# target_link_libraries(traj_gen
+#    ${catkin_LIBRARIES}
+# )
+#
+# target_link_libraries(scale
+#    ${catkin_LIBRARIES}
+# )
+#
+# target_link_libraries(goal_transform
+#    ${catkin_LIBRARIES}
+# )
+#
+# target_link_libraries(transform_pointcloud
+#    ${catkin_LIBRARIES}
+# )
 
-target_link_libraries(traj_gen
-   ${catkin_LIBRARIES}
-)
-
-target_link_libraries(scale
-   ${catkin_LIBRARIES}
-)
-
-target_link_libraries(goal_transform
-   ${catkin_LIBRARIES}
-)
-
-target_link_libraries(transform_pointcloud
-   ${catkin_LIBRARIES}
-)
 #############
 ## Install ##
 #############
